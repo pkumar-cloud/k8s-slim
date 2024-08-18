@@ -27,13 +27,13 @@ spec:
           httpGet:
             path: /healthz
             port: 3000
-          initialDelaySeconds: 15
-          periodSeconds: 5
-        readinessProbe:
+          initialDelaySeconds: 15 #initial delay, giving the application time to start up before we start probing its endpoint.
+          periodSeconds: 5 #after the initial delay, keep probing this endpoint every 5 seconds
+        readinessProbe: #sends traffic only if probe is healthy.
           httpGet:
             path: /readyz
             port: 3000
-          initialDelaySeconds: 10
+          initialDelaySeconds: 10 #wait for 10 secs before checking the rediness endpoint. the initial delay is less critical. An unresponsive app during startup correctly indicates it's not yet ready for traffic
           periodSeconds: 5
         resources:
           requests:

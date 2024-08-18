@@ -7,9 +7,9 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/instance: mongodb
-  serviceName: mongodb    ## mongodb-0 mongodb-1
-  replicas: 1
-  template:
+  serviceName: mongodb    ## mongodb-0 mongodb-1. Is the prefix that will be used to name every single pod in the stateful set.
+  replicas: 1  #keep only one STS else data will be written in two diff PV's.
+  template: #skeleton for each pod
     metadata:
       labels:
         app.kubernetes.io/name: grade-submission
@@ -29,9 +29,9 @@ spec:
         volumeMounts:
         - name: mongodb-persistent-storage
           mountPath: /data/db
-  volumeClaimTemplates:
+  volumeClaimTemplates: #skeleton for each PVC. One PVC PER stateful pod.
   - metadata:
-      name: mongodb-persistent-storage
+      name: mongodb-persistent-storage #mongodb-persistent-storage-mongodb-0, mongodb-persistent-storage-mongodb-1
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:

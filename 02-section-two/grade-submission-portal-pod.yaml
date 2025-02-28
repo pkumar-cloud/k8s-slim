@@ -11,7 +11,7 @@ spec:
   - name: grade-submission-portal
     image: rslim087/kubernetes-course-grade-submission-portal
     env:
-      - name: GRADE_SERVICE_HOST
+      - name: GRADE_SERVICE_HOST #Env variable to connect to grade-submission-api
         value: grade-submission-api
     resources:
       requests:

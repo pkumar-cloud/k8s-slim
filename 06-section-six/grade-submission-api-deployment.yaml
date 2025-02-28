@@ -23,17 +23,17 @@ spec:
       containers:
       - name: grade-submission-api
         image: rslim087/kubernetes-course-grade-submission-api:stateless
-        livenessProbe:
-          httpGet:
-            path: /healthz
+        livenessProbe: 
+          httpGet: #makes continuous get requests to the liveness endpoint
+            path: /healthz #if 200 sends back, app is healthy. If sends back a negative response our container will automatically restart.
             port: 3000
           initialDelaySeconds: 15 #initial delay, giving the application time to start up before we start probing its endpoint.
           periodSeconds: 5 #after the initial delay, keep probing this endpoint every 5 seconds
-        readinessProbe: #sends traffic only if probe is healthy.
+        readinessProbe: #sends traffic only if readinessProbe is healthy.
           httpGet:
             path: /readyz
             port: 3000
-          initialDelaySeconds: 10 #wait for 10 secs before checking the rediness endpoint. the initial delay is less critical. An unresponsive app during startup correctly indicates it's not yet ready for traffic
+          initialDelaySeconds: 10 #Not needed, wait for 10 secs before checking the rediness endpoint. the initial delay is less critical. An unresponsive app during startup correctly indicates it's not yet ready for traffic
           periodSeconds: 5
         resources:
           requests:

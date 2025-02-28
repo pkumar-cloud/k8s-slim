@@ -1,0 +1,3 @@
+kubectl create -f grade-submission-api-deployment.yaml
+localhost:3000
+kubectl rollout undo deployment/grade-submission-api-deployment -n grade-submission

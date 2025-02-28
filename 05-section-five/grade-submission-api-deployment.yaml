@@ -4,15 +4,15 @@ metadata:
   name: grade-submission-api
   namespace: grade-submission
 spec:
-  replicas: 2
+  replicas: 2 #Desired state
   selector:
     matchLabels:
       app.kubernetes.io/instance: grade-submission-api
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 50%
-      maxSurge: 1 ## ensure that we do not have more than 3 pod replicas
+      maxUnavailable: 50% #from Desired state
+      maxSurge: 1 ## from Desired state, ensure that we do not have more than 3 pod replicas
   template:
     metadata:
       labels:

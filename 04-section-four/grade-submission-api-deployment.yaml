@@ -4,7 +4,7 @@ metadata:
   name: grade-submission-api
   namespace: grade-submission
 spec:
-  replicas: 2
+  replicas: 2 #Desired state
   selector:
     matchLabels:
       app.kubernetes.io/instance: grade-submission-api

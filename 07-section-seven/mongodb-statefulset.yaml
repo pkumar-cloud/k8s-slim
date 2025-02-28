@@ -28,7 +28,7 @@ spec:
         - containerPort: 27017
         volumeMounts:
         - name: mongodb-persistent-storage
-          mountPath: /data/db
+          mountPath: /data/db  #Data dir for Mongo DB
   volumeClaimTemplates: #skeleton for each PVC. One PVC PER stateful pod.
   - metadata:
       name: mongodb-persistent-storage #mongodb-persistent-storage-mongodb-0, mongodb-persistent-storage-mongodb-1

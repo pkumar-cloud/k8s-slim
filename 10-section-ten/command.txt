@@ -1,0 +1,16 @@
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+kubectl get pod -n ingress-nginx
+kubectl get ingressclass
+kubectl apply -f grade-submission-portal
+kubectl get svc -n ingress-nginx
+kubectl get svc -n grade-submission
+localhost:80
+
+#minikube:
+# Enable ingress
+minikube addons enable ingress
+kubectl get pod -n ingress-nginx
+
+# Tunneling
+# Access via localhost/grafana    localhost/prometheus    localhost/alertmanager
+minikube tunnel

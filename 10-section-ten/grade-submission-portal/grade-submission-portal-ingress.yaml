@@ -4,12 +4,12 @@ metadata:
   name: grade-submission-portal-ingress
   namespace: grade-submission
 spec:
-  ingressClassName: nginx
+  ingressClassName: nginx #associate this ingress rule with the nginx ingress controller.
   rules:     
-  - http:
+  - http: #no Host, thus accepts traffic from any host.
       paths:
-      - pathType: Prefix
-        path: "/"    
+      - pathType: Prefix #it will match any path that starts with slash and forward it to the cluster IP service.
+        path: "/"    #E.g. localhost:80/
         backend:
           service:
             name: grade-submission-portal

@@ -12,4 +12,5 @@ workload:   ## container specific configurations
   livenessDelay: 15
 
 secrets:  ## sensitive data
-  MONGODB_URI: 'mongodb://mongodb.mongodb.svc.cluster.local:27017'
+  MONGODB_URI: 'mongodb://mongodb.mongodb.svc.cluster.local:27017' #when the service exists in a different namespace and you want a pod to communicate with that service => <ServiceName>.<Service-Namespace>.svc.cluster.local:<portNumber>
+  # mongodb://user:password@mongodb.mongodb.svc.cluster.local:27017 -> If authentication is enabled for MongoDB

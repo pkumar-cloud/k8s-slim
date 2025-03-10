@@ -3,7 +3,7 @@ useStatefulSet: true
 auth:
   enabled: false
 
-image:
+image: #overode with official Mongodb image, since Bitnami Mongodb image is not compatible with Arm64
   registry: docker.io
   repository: mongo
   tag: 6.0.4-jammy

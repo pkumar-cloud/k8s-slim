@@ -1,0 +1,35 @@
+Install metrics server
+kubectl apply -f grade-submission-portal
+kubectl get hpa -n grade-submission
+kubectl top pods -n grade-submission
+
+# Install metrics server on Mac
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml && kubectl patch deployment metrics-server -n kube-system --type='json' -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value":"--kubelet-insecure-tls"}]'
+
+# Install metrics server on Windows - powershell
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml && kubectl patch deployment metrics-server -n kube-system --type='json' -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value":"--kubelet-insecure-tls"}]'
+
+# Install metrics server on Windows - CMD
+If you are using Windows CMD, you will need to enter these two commands separately. The first command installs all the necessary components for the Metrics Server:
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+The second command specifically patches the deployment manifest to add the --kubelet-insecure-tls flag to the Metrics Server configuration:
+kubectl patch deployment metrics-server -n kube-system --type="json" -p="[{\"op\": \"add\", \"path\": \"/spec/template/spec/containers/0/args/-\", \"value\":\"--kubelet-insecure-tls\"}]"
+
+Minikube:
+# Delete minikube cluster
+minikube delete
+
+# Restart using workaround to enable resource monitor
+minikube start --extra-config=kubelet.housekeeping-interval=10s
+
+# Enable metrics server
+minikube addons enable metrics-server
+
+# Enable ingress
+minikube addons enable ingress
+kubectl get pod -n ingress-nginx
+
+# Tunneling
+# Access via localhost/grafana    localhost/prometheus    localhost/alertmanager
+minikube tunnel

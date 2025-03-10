@@ -5,4 +5,4 @@ metadata:
   namespace: {{ .Values.microservice.namespace }}
 data:
   MONGODB_HOST: {{ .Values.env.MONGODB_HOST }}
-  MONGODB_PORT: {{ .Values.env.MONGODB_PORT | quote }}
+  MONGODB_PORT: {{ .Values.env.MONGODB_PORT | quote }} #surrounds our value with double quotes

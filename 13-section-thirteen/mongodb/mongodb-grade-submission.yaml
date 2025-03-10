@@ -9,16 +9,23 @@ spec:
   version: "6.0.5"
   security:
     authentication:
-      modes: ["SCRAM"]
+      #Scram is a secure way of using basic authentication against MongoDB without exposing the password over the network.
+      #it's the standard way of authenticating to MongoDB. Scram related authentication is handled on the server side.
+      #on the server side, MongoDB uses this authentication mode to authenticate this user without the user having to send this password over the network.
+      # mongodb://myuser:mypassword@mongodb-service:27017/
+      #in the connection string you've got the username password the host and the port. the great submission API would use the host and the port to locate the database
+      #send over the username, but the password doesn't get sent over in plain text. What happens is these scram credentials are derived based on whatever password we choose
+      #and MongoDB will essentially use the Scram credentials to basically ask the Great Submission API a question And the API has to compute a response based on the password And if MongoDB accepts the response, then authentication occurs.
+      modes: ["SCRAM"] 
   users:
     - name: user
       db: grades
       passwordSecretRef:
-        name: mongodb-user-password
+        name: mongodb-user-password #secret
       roles: 
-        - name: readWrite
-          db: grades
-      scramCredentialsSecretName: mongodb-grade-submission
+        - name: readWrite #built-in role from mongodb documentaiton -> https://www.mongodb.com/docs/manual/reference/built-in-roles/
+          db: grades #allocated RW role for grades db
+      scramCredentialsSecretName: mongodb-grade-submission #same name as MongoDBCommunity resource
 
   statefulSet:
     spec:
@@ -26,4 +33,4 @@ spec:
         spec:
           containers:
           - name: mongodb-agent
-            image: "quay.io/mongodb/mongodb-agent-ubi:12.0.32.7857-1"
+            image: "quay.io/mongodb/mongodb-agent-ubi:12.0.32.7857-1" #took from offical mongodb repo. compatible with both ARM & AMD

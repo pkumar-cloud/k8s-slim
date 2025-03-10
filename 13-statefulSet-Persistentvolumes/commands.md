@@ -1,6 +1,7 @@
+```bash
 kubectl apply -f mongodb-statefulset.yaml
 kubectl get statefulset -n grade-submission
 kubectl get pvc -n grade-submission
 kubectl apply -f mongodb-service.yaml
 kubectl apply -f .
-
+```

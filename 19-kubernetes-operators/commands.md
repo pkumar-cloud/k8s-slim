@@ -24,7 +24,10 @@ https://github.com/mongodb/mongodb-kubernetes-operator/blob/master/config/sample
 cd mongodb
 kubectl apply -f mongodb-user-password.yaml
 kubectl apply -f mongodb-grade-submission/yaml
-kubectl get Mongodbcommunity -n mongodb
+kubectl get mongodbcommunity -n mongodb
 
-
+#Cleanup
+helm list --all-namespaces
+helm uninstall community-operator -n mongodb #uninstall operator and XRD
+Uninstall other releases
 ```

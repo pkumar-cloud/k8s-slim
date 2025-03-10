@@ -1,3 +1,4 @@
+```bash
 kubectl config current-context
 kubectl apply -f grade-submission-portal-pod.yaml
 kubectl logs -f grade-submission-portal -c grade-submission-portal
@@ -8,3 +9,4 @@ kubectl delete pod -l "app.kubernetes.io/name=grade-submission"
 kubectl describe grade-submission-portal
 
 kubectl apply -f grade-submission-api-pod.yaml
+```

@@ -1,3 +1,4 @@
+```bash
 Install metrics server
 kubectl apply -f grade-submission-portal
 kubectl get hpa -n grade-submission
@@ -33,3 +34,5 @@ kubectl get pod -n ingress-nginx
 # Tunneling
 # Access via localhost/grafana    localhost/prometheus    localhost/alertmanager
 minikube tunnel
+
+```

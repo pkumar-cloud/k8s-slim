@@ -1,3 +1,4 @@
+```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
 kubectl get pod -n ingress-nginx
 kubectl get ingressclass
@@ -14,3 +15,5 @@ kubectl get pod -n ingress-nginx
 # Tunneling
 # Access via localhost/grafana    localhost/prometheus    localhost/alertmanager
 minikube tunnel
+
+```

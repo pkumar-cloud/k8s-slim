@@ -12,7 +12,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 50%
-      maxSurge: 1 ## ensure that we do not have more than 3 pod replicas
+      maxSurge: 1 #ensure that we do not have more than 3 pod replicas
   template:
     metadata:
       labels:

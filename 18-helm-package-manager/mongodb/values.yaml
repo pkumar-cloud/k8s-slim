@@ -1,12 +1,13 @@
-useStatefulSet: true
+useStatefulSet: true # If false then will use deployment object to deploy
 
 auth:
   enabled: false
 
 image: #overode with official Mongodb image, since Bitnami Mongodb image is not compatible with Arm64
+#not needed for Windows/x86/AMD
   registry: docker.io
   repository: mongo
   tag: 6.0.4-jammy
 
 persistence:
-  mountPath: /data/db
+  mountPath: /data/db #For Bintami image its different path.

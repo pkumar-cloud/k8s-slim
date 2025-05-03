@@ -4,7 +4,7 @@ metadata:
   name: grade-submission-portal-ingress
   namespace: grade-submission
 spec:
-  ingressClassName: nginx #associate this ingress rule with the nginx ingress controller.
+  ingressClassName: nginx #kubectl get ingressclass -> associate this ingress rule with the nginx ingress controller.
   rules:     
   - http: #no Host, thus accepts traffic from any host.
       paths:

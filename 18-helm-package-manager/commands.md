@@ -3,6 +3,7 @@
 ```bash
 #Add Helm Repository & Setup Mongo first:
 helm repo add bitnami https://charts.bitnami.com/bitnami # This adds the Bitnami repository, which hosts many popular software charts.
+https://github.com/bitnami/charts/tree/main/bitnami
 #Update Helm Repositories:
 helm repo update # Ensures you have the latest chart versions available.
 #Search for Available Charts:

@@ -25,12 +25,12 @@ spec:
       roles: 
         - name: readWrite #built-in role from mongodb documentaiton -> https://www.mongodb.com/docs/manual/reference/built-in-roles/
           db: grades #allocated RW role for grades db
-      scramCredentialsSecretName: mongodb-grade-submission #same name as MongoDBCommunity resource
+      scramCredentialsSecretName: mongodb-grade-submission #same name as MongoDBCommunity resource, it will add "-scram-credentials" at the last autometically 
 
   statefulSet:
     spec:
       template:
         spec:
           containers:
-          - name: mongodb-agent
+          - name: mongodb-agent #Default agent container (2nd container) was failing on ARM64, thus overridding with below
             image: "quay.io/mongodb/mongodb-agent-ubi:12.0.32.7857-1" #took from offical mongodb repo. compatible with both ARM & AMD

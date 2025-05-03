@@ -17,10 +17,10 @@ spec:
         app.kubernetes.io/instance: mongodb
     spec:
       containers:
-      - name: mongodb
+      - name: mongodb  #from Dockerhub
         image: mongo:4.4
-        env:
-          - name: MONGO_INITDB_ROOT_USERNAME
+        env: #MongoDB does not enforce authetication by default until below ENV valiables are used. 
+          - name: MONGO_INITDB_ROOT_USERNAME #These variables, used in conjunction, create a new user and set that user's password. This user is created in the adminauthentication database and given the role of root, which is a "superuser" role.
             value: "admin"
           - name: MONGO_INITDB_ROOT_PASSWORD
             value: "password123"

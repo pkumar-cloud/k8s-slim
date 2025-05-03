@@ -9,6 +9,7 @@ helm list -A
 helm uninstall mongodb -n mongodb
 helm repo list
 helm repo remove bitnami
+kubectl delete pvc,pv,svc,sts,po, --all -n mongodb
 helm search repo
 helm repo add my-mongodb https://mongodb.github.io/helm-charts
 helm repo update
@@ -23,11 +24,11 @@ https://github.com/mongodb/mongodb-kubernetes-operator/blob/master/config/sample
 
 cd mongodb
 kubectl apply -f mongodb-user-password.yaml
-kubectl apply -f mongodb-grade-submission/yaml
+kubectl apply -f mongodb-grade-submission.yaml
 kubectl get mongodbcommunity -n mongodb
 
 #Cleanup
 helm list --all-namespaces
-helm uninstall community-operator -n mongodb #uninstall operator and XRD
+helm uninstall community-operator -n mongodb #uninstall operator and CRD
 Uninstall other releases
 ```

@@ -1,5 +1,6 @@
 ```bash
 eksctl create cluster --name my-cluster --region us-west-1 --node-type t3.medium --nodes 2
+kubectl config current-context
 
 eksctl create cluster \
  --name my-cluster \
@@ -13,11 +14,16 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl get ns
 kubectl get svc -n ingress-nginx
 cd 17-helm-charts/grade-submission-portal
+kubectl create ns grade-submission
 helm install grade-submission-portal . -n grade-submission
 
 eksctl delete cluster --name my-cluster
 
 #cleanup
-remove helm repos
+remove helm repos:
+helm repo list
+helm repo remove mongodb
+docker images
 docker system prune -a #removes unused Docker objects & images
+disable k8s from docker desktop & delete all images
 ```

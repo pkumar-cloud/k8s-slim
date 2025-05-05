@@ -22,4 +22,12 @@ spec:
           - containerPort: 3000
       - name: kube-rbac-proxy #will serve as a secure endpoint to validate any incoming requests before they reach the API 
         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.14.0 
+        args: #command line args for proxy app, from documentation
+          - "--secure-listen-address=0.0.0.0:8443" #https calls, verifies if requests are autherized to access grade submission API
+          - "--upstream=http://127.0.0.1:3000/" #Once request is validated it will sent to same local pod but on container Port 3000 i.e. app port.
+          - "--logtostderr=true" #log for granted/rejected with a certain level of verbosity
+          - "--v=10"
+        ports:
+        - containerPort: 8443
+          name: https #port name for proxy container
 

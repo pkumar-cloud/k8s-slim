@@ -14,7 +14,8 @@ Cluster Role Example: [Link](https://kubernetes.io/docs/reference/access-authn-a
 Here are commands that you can use to add grades to the Grade Submission API. **Windows Users should use Git Bash**.
 
 ```bash
-kubectl apply -f .
+#If applied without "kube-rbac-proxy" container, We can see that client is able to very freely without restriction access the POST and GET resources that are provided by the grade submission API.
+kubectl apply -f 01-grade-submission-api-deployment-no-proxy.yaml
 kubectl get pod -n grade-demo
 
 curl -X POST http://localhost:31000/grades \

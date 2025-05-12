@@ -1,0 +1,19 @@
+# access control resource 
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: grade-proxy-sa
+  namespace: grade-demo
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: grade-proxy-binding
+subjects: #defines who gets the permissions
+- kind: ServiceAccount
+  name: grade-proxy-sa # Name is case sensitive
+  namespace: grade-demo
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin #whoever is associated with the service account, will get full access to do whatever it wants tp do on the cluster. 
+  apiGroup: rbac.authorization.k8s.io

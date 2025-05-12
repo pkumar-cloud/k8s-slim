@@ -8,7 +8,7 @@ spec:
   selector:
     app: grade-submission
   ports:
-  - port: 8443 #point to kube-rbac-proxy container
+  - port: 8443 
     targetPort: https #point to kube-rbac-proxy container port
     nodePort: 31000
 #when a request is made on local host 31000 of our node Port, it's going to be 
